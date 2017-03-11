@@ -19,12 +19,12 @@ class ModeParser(object):
 
     _modifier = Literal('+') | Literal('-') | Literal('!') | Literal('*') | \
                 Literal('@') | Literal('#')
-    _arg_name = Word(alphanums + '_')
+    _arg_name = Word(alphanums + '_-\'')
     _num_restriction = Word(nums)
     _num_restrictor = Literal('[').suppress() + _num_restriction + \
                       Literal(']').suppress()
     _argument = _modifier + _arg_name + Optional(_num_restrictor)
-    _predicate_name = Word(alphanums + '_')
+    _predicate_name = Word(alphanums + '_-\'')
     _mode_line = _predicate_name + Literal('(').suppress() + _argument + \
                  ZeroOrMore(Literal(',').suppress() + _argument) + \
                  Literal(')').suppress()
